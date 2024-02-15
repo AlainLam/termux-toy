@@ -117,7 +117,7 @@ while true; do
     3)
         alias_selector debian_alias
         user_selector "$debian_alias" username
-        exec_prompt 'proot-distro login "$debian_alias" --user "$username" --shared-tmp -- bash -c "bash /tmp/termux-toy/debian/install_code_server.sh"'
+        exec_prompt 'proot-distro login "$debian_alias" --user "$username" --shared-tmp -- bash -c "bash /tmp/termux-toy/debian/install_android_studio.sh"'
         ;;
     4)
         alias_selector debian_alias
