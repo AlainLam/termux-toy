@@ -129,7 +129,7 @@ else
                 read2log "这个功能需要安装nmap，你是否想要安装它？(Y/n): " is_install_nmap
             done
             if [ $is_install_nmap == "Y" ] || [ $is_install_nmap == "y" ]; then
-                exec_prompt 'apt install nmap -y'
+                exec_prompt 'apt update && apt install nmap -y'
             else
                 back2home 1
             fi
