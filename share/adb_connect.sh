@@ -33,34 +33,7 @@ title() {
 }
 source "$SCRIPT_PATH/../util/title.sh"
 
-# Attempt to connect to the specified port range
-# 尝试连接到指定端口范围
-connect_to_ports() {
-    local ports=("$@")
-    local adb_output
-    for port in "${ports[@]}"; do
-        # Attempt connection
-        # 尝试连接
-        echo2log "adb connecting localhost:$port"
-        exec_prompt 'adb_output=$(adb connect localhost:"$port" 2>&1)'
-        # Check if connection is successful
-        # 检查连接是否成功
-        if [[ $adb_output =~ connected ]]; then
-            echo2log "adb connected localhost:$port"
-            # Save the port to the config file
-            # 保存端口号
-            if grep -q "^Android_ADB_Port=" "$CONFIGURATION_FILE"; then
-                exec_prompt 'sed -i "s/^Android_ADB_Port=.*/Android_ADB_Port=$port/" "$CONFIGURATION_FILE"'
-            else
-                echo2log "Android_ADB_Port=$port" >>"$CONFIGURATION_FILE"
-            fi
-            back2home 0
-        fi
-    done
-    echo2log "Failed to connect to any port"
-    echo2log "无法连接到如何端口"
-    back2home 1
-}
+keep_connect_tag="$1"
 
 # ADB tools are necessary
 # ADB工具是必须的
@@ -85,6 +58,44 @@ if ! [ -x "$(command -v adb)" ]; then
         back2home 1
     fi
 fi
+
+# Attempt to connect to the specified port range
+# 尝试连接到指定端口范围
+connect_to_ports() {
+    local ports=("$@")
+    local adb_output
+    local connected=false
+    for port in "${ports[@]}"; do
+        # Attempt connection
+        # 尝试连接
+        echo2log "adb connecting localhost:$port"
+        exec_prompt 'adb_output=$(adb connect localhost:"$port" 2>&1)'
+        # Check if connection is successful
+        # 检查连接是否成功
+        if [[ $adb_output =~ connected ]]; then
+            echo2log "adb connected localhost:$port"
+            # Save the port to the config file
+            # 保存端口号
+            if grep -q "^Android_ADB_Port=" "$CONFIGURATION_FILE"; then
+                exec_prompt 'sed -i "s/^Android_ADB_Port=.*/Android_ADB_Port=$port/" "$CONFIGURATION_FILE"'
+            else
+                echo2log "Android_ADB_Port=$port" >>"$CONFIGURATION_FILE"
+            fi
+            connected=true
+            break
+        fi
+    done
+    if $connected; then
+        if [ $keep_connect_tag != "keep" ]; then
+            back2home 0
+        fi
+        # continue other logic
+    else
+        echo2log "Failed to connect to any port"
+        echo2log "无法连接到如何端口"
+        back2home 1
+    fi
+}
 
 adb_method=""
 while [[ $adb_method != "1" && $adb_method != "2" ]]; do

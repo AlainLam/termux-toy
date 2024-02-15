@@ -35,10 +35,11 @@ source "$PROJECT_DIR/util/title.sh"
 # 日志工具
 echo2log() {
     local current_time
+    local log_line
     current_time=$(date +"%Y-%m-%d %H:%M:%S")
-    while IFS= read -r line || [[ -n "$line" ]]; do
-        echo "$current_time: $line" >>"$LOG_FILE"
-        echo "$line"
+    while IFS= read -r log_line || [[ -n "$log_line" ]]; do
+        echo "$current_time: $log_line" >>"$LOG_FILE"
+        echo "$log_line"
     done <<<"$1"
 }
 
