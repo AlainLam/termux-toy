@@ -86,7 +86,7 @@ connect_to_ports() {
         fi
     done
     if $connected; then
-        if [ $keep_connect_tag != "keep" ]; then
+        if [ "$keep_connect_tag" != "keep" ]; then
             back2home 0
         fi
         # continue other logic
@@ -201,7 +201,7 @@ else
         while IFS= read -r line; do
             if [[ $line =~ ^[0-9]+/tcp.*open.* ]]; then
                 echo2log "$line"
-                port=$(echo "$line" | awk -F/ "{print $1}")
+                port=$(echo "$line" | awk -F/ "{print \$1}")
                 adb_pending_ports+=("$port")
             fi
         done <<<"$nmap_output"

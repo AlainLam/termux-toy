@@ -61,7 +61,7 @@ fi
 # 如果还没有连接到localhost，则尝试连接
 disconnect_adb=false
 if ! $is_connected; then
-    exec_prompt 'bash $PROJECT_DIR/share/adb_connect.sh'
+    exec_prompt 'bash $PROJECT_DIR/share/adb_connect.sh "keep"'
     exec_prompt 'source $HOME/.profile'
     is_connected=true
     disconnect_adb=true
