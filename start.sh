@@ -41,6 +41,8 @@ else
     unzip -q $HOME/termux-toy.zip >/dev/null 2>&1
     rm -rf "$HOME/termux-toy.zip"
     mv "$HOME/termux-toy-main" "$HOME/termux-toy"
+    cp -r "$HOME/termux-toy-$current_time/.cache" "$HOME/termux-toy/.cache"
+    cp -r "$HOME/termux-toy-$current_time/.tmp" "$HOME/termux-toy/.tmp"
   fi
 fi
 cd "$HOME/termux-toy/" || exit
