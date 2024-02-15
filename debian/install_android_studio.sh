@@ -10,13 +10,13 @@ source "$SCRIPT_PATH/../util/util.sh"
 # 重复确认是否需要安装软件包
 if [ -d "$HOME/Android/android-studio" ]; then
     echo2log "It seems that you have installed the Android Studio, but you can continue with the reinstall. Therefore, just confirm again whether you want to continue?(Y/n): "
-    read2log "您似乎已经安装了代码服务器，但可以继续重新安装。因此，只是再次确认是否要继续？(Y/n): " is_continue_reinstall
+    read2log "您似乎已经安装了Android Studio，但可以继续重新安装。因此，只是再次确认是否要继续？(Y/n): " is_continue_reinstall
     while [[ "$is_continue_reinstall" != "Y" && "$is_continue_reinstall" != "y" && "$is_continue_reinstall" != "N" && "$is_continue_reinstall" != "n" ]]; do
         echo2log "Please input a valid values(Y/n): "
         read2log "请输入有效值(Y/n): " is_continue
     done
     if [[ "$is_continue_reinstall" == "N" || "$is_continue_reinstall" == "n" ]]; then
-        exec_prompt 'exec "$SCRIPT_PATH/inlet.sh"'
+        exit
     fi
 fi
 

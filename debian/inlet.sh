@@ -107,7 +107,7 @@ while true; do
         else
             exec_prompt 'proot-distro install --override-alias "$debian_alias" debian '
         fi
-        proot-distro login "$debian_alias" --shared-tmp -- bash -c "bash /tmp/termux-toy/debian/install.sh"
+        exec_prompt 'proot-distro login "$debian_alias" --shared-tmp -- bash -c "bash /tmp/termux-toy/debian/install.sh"'
         ;;
     2)
         alias_selector debian_alias

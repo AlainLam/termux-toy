@@ -16,7 +16,7 @@ if [ -d "$HOME/Applications/coder" ]; then
         read2log "请输入有效值(Y/n): " is_continue
     done
     if [[ "$is_continue_reinstall" == "N" || "$is_continue_reinstall" == "n" ]];then
-        exec_prompt 'exec "$SCRIPT_PATH/inlet.sh"'
+        exit
     fi
 fi
 
