@@ -14,14 +14,7 @@ if [ -x "$(command -v adb)" ]; then
     devices_regex="(localhost:[0-9]+)"
     if [[ $devices_output =~ $devices_regex ]]; then
         device_identifier=${BASH_REMATCH[1]}
-        echo2log "ADB server running, and connected to localhost."
-        echo2log "ADB Server正在运行，且已连接localhost"
-        echo2log "device identifier: $device_identifier"
-        echo2log "设备标识：$device_identifier"
         is_connected=true
-    else
-        echo2log "ADB server running, but not connected to localhost."
-        echo2log "ADB Server正在运行，但未连接到localhost"
     fi
 fi
 
@@ -41,6 +34,10 @@ source "$SCRIPT_PATH/../util/title.sh"
 # If connected, just determine whether to disconnect and back to home page
 # 如果已经链接,只是判断是否需要断开链接, 并返回主页面
 if $is_connected; then
+    echo2log "ADB server running, and connected to localhost."
+    echo2log "ADB Server正在运行，且已连接localhost"
+    echo2log "device identifier: $device_identifier"
+    echo2log "设备标识：$device_identifier"
     is_diconnect_adb=""
     while [[ $is_diconnect_adb != "Y" && $is_diconnect_adb != "y" && $is_diconnect_adb != "N" && $is_diconnect_adb != "n" ]]; do
         echo2log "Do you want to disconnect localhost?(Y/n): "
