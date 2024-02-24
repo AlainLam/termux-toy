@@ -127,7 +127,7 @@ while [[ $is_autofix_sdktools != "Y" && $is_autofix_sdktools != "y" && $is_autof
     read -r -p "是否自动修复编译工具问题(Y/n): " is_autofix_sdktools
 done
 
-if [ "$is_autofix_sdktools" != "Y" ] && [ "$is_autofix_sdktools" != "y" ]; then
+if [ "$is_autofix_sdktools" == "Y" ] || [ "$is_autofix_sdktools" == "y" ]; then
     # Install inotify-tools
     # 安装inotify-tools
     echo2log "Debian ENV: Installing inotify-tools..."
@@ -146,7 +146,7 @@ else
         echo2log "Do you want to download the sdk tools to $HOME/Android/android-sdk-tools"
         read -r -p "是否下载编译工具到$HOME/Android/android-sdk-tools目录(Y/n): " is_download_sdktools
     done
-    if [ "$is_download_sdktools" != "Y" ] && [ "$is_download_sdktools" != "y" ]; then
+    if [ "$is_download_sdktools" == "Y" ] || [ "$is_download_sdktools" == "y" ]; then
         # Get the compiled tools
         # 下载编译好的工具
         exec_prompt 'curl -OJL --progress-bar https://github.com/lzhiyong/android-sdk-tools/releases/download/34.0.3/android-sdk-tools-static-aarch64.zip'
