@@ -63,7 +63,7 @@ exec_prompt 'cd $HOME/Downloads'
 # 下载Android SDK命令行工具
 echo2log "Debian ENV: Downloading Android SDK command line tools"
 echo2log "Debian ENV: 下载Android SDK命令行工具"
-exec_prompt 'curl -OJL --progress-bar https://dl.google.com/android/repository/commandlinetools-linux-10406996_latest.zip'
+exec_prompt 'curl -OJL --progress-bar https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip'
 # Decompress
 # 解压缩
 exec_prompt 'unzip commandlinetools-linux-*.zip && rm -rf commandlinetools-linux-*.zip'
@@ -105,7 +105,7 @@ exec_prompt 'cd $HOME/Downloads'
 # 下载Android Studio
 echo2log "Debian ENV: Downloading the Android Studio"
 echo2log "Debian ENV: 下载Android Studio"
-exec_prompt 'curl -OJL --progress-bar https://redirector.gvt1.com/edgedl/android/studio/ide-zips/2022.3.1.20/android-studio-2022.3.1.20-linux.tar.gz'
+exec_prompt 'curl -OJL --progress-bar https://redirector.gvt1.com/edgedl/android/studio/ide-zips/2024.2.2.13/android-studio-2024.2.2.13-linux.tar.gz'
 # Decompress
 # 解压缩
 exec_prompt 'tar -xvf android-studio-*-linux.tar.gz && rm -rf android-studio-*-linux.tar.gz'
@@ -149,7 +149,7 @@ else
     if [ "$is_download_sdktools" == "Y" ] || [ "$is_download_sdktools" == "y" ]; then
         # Get the compiled tools
         # 下载编译好的工具
-        exec_prompt 'curl -OJL --progress-bar https://github.com/lzhiyong/android-sdk-tools/releases/download/34.0.3/android-sdk-tools-static-aarch64.zip'
+        exec_prompt 'curl -OJL --progress-bar https://github.com/lzhiyong/android-sdk-tools/releases/download/35.0.2/android-sdk-tools-static-aarch64.zip'
         # Decompress
         # 解压缩
         exec_prompt 'unzip android-sdk-tools-static-aarch64.zip'
@@ -162,6 +162,6 @@ else
     else
         echo2log "Because you haven't download the android sdk tools, so the Android Studio should not working on your end"
         echo2log "因为你没有下载SDK工具，所以Android Studio应该不能正常运行"
-        echo2log "https://github.com/lzhiyong/android-sdk-tools/releases/download/34.0.3/android-sdk-tools-static-aarch64.zip"
+        echo2log "https://github.com/lzhiyong/android-sdk-tools/releases/download/35.0.2/android-sdk-tools-static-aarch64.zip"
     fi
 fi
