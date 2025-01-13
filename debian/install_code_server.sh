@@ -34,7 +34,7 @@ exec_prompt 'cd $HOME/Downloads'
 echo2log "Debian ENV: Downloading the Code Server"
 echo2log "Debian ENV: 下载Code Server"
 
-exec_prompt 'curl -OJL --progress-bar https://github.com/coder/code-server/releases/download/v4.17.1/code-server-4.17.1-linux-arm64.tar.gz'
+exec_prompt 'curl -OJL --progress-bar https://github.com/coder/code-server/releases/download/v4.96.2/code-server-4.96.2-linux-arm64.tar.gz'
 
 # Decompress
 # 解压缩
